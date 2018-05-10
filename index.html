@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rock Paper Scissors
+    </title>
+</head>
+
+<body>
+
+    <div id="game">
+        <h1> Rock Paper Scissors</h1>
+        <p> This is a one player game. It's you vs. the computer! Type 'r' for Rock, 'p' for Paper and 's' for Scissors. The
+            computer will select a random choice and the winner of the round will be awarded a point. </p>
+        <p id="userGuess"></p>
+        <p id="computerGuess"></p>
+        <p id="replace"></p>
+        <p id="userScore"></p>
+        <p id="computerScore"></p>
+        <p id="winner"></p>
+        <!-- <p id="userWinsR"></p>
+        <p id="computerWinsP"></p> -->
+    </div>
+
+    <script type="text/javascript">
+
+        // Creates an array that lists out all of the options (Rock, Paper, or Scissors).
+        var computerChoices = ["r", "p", "s"];
+
+        // Initialize scores
+        var userScore = 0;
+        var computerScore = 0;
+        var totalPointsAvailable = 4;
+
+        // for (var i = 0; i >= totalPointsAvailable; i++) {
+        // This function is run whenever the user presses a key.
+        document.onkeyup = function (event) {
+
+            // Determines which key was pressed.
+            var userGuess = event.key;
+
+            // Randomly chooses a choice from the options array. This is the Computer's guess.
+            var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+            // Alerts the key the user pressed (userGuess).
+            document.getElementById("userGuess").innerHTML = "User guess: " + userGuess;
+
+            // Alerts the Computer's guess.
+            document.getElementById("computerGuess").innerHTML = "Computer guess: " + computerGuess;
+
+            document.getElementById("winner").innerHTML = "";
+
+            // Logic for scoring 
+            if (userGuess == computerGuess) {
+                document.getElementById("replace").innerHTML = "Tie";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess !== "s" && userGuess !== "r" && userGuess !== "p") {
+                document.getElementById("replace").innerHTML = "To play, enter 'r', 'p', 's'";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess == "r" && computerGuess == "p") {
+                computerScore = computerScore + 1;
+                document.getElementById("replace").innerHTML = "Computer gets the Point!";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess == "r" && computerGuess == "s") {
+                userScore = userScore + 1;
+                document.getElementById("replace").innerHTML = "User gets the Point!";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess == "p" && computerGuess == "s") {
+                computerScore = computerScore + 1;
+                document.getElementById("replace").innerHTML = "Computer gets the Point!";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess == "p" && computerGuess == "r") {
+                userScore = userScore + 1;
+                document.getElementById("replace").innerHTML = "User gets the Point!";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess == "s" && computerGuess == "p") {
+                userScore = userScore + 1;
+                document.getElementById("replace").innerHTML = "User gets the Point!";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            else if (userGuess == "s" && computerGuess == "r") {
+                computerScore = computerScore + 1;
+                document.getElementById("replace").innerHTML = "Computer gets the Point!";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+            }
+
+            //Error response
+            else {
+                alert("Redo");
+            }
+
+            //Completes the game when a user score >=3 points and resets the score for a new game.
+            if (userScore >= 3 || computerScore >= 3) {
+                document.getElementById("replace").innerHTML = "End Game";
+                document.getElementById("userScore").innerHTML = "User Score = " + userScore;
+                document.getElementById("computerScore").innerHTML = "Computer Score= " + computerScore;
+                if (userScore >= 3) {
+                    document.getElementById("winner").innerHTML = "You Won!";
+                }
+                else {
+                    document.getElementById("winner").innerHTML = "Computer Won!";
+                }
+                userScore = 0;
+                computerScore = 0;
+            }
+        };
+
+    </script>
+
+</body>
+
+</html>
